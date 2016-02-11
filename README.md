@@ -1,11 +1,12 @@
 # c-1
+//C++ First Term
 
-View script resuts file in every folder to see code and tests run.
+VIEW SCRIPT RESULTS TO SEE CODE AND TESTS RUN.
 
-final 
+Final 
 
       Program to calculate the taxes that user has to pay based on 
-       marital status and income.
+      marital status and income.
 
 Lab 10 
 
@@ -17,18 +18,17 @@ Lab 9
     integers entered, displays elements, and manipulates elements through 
     specific functions.
 
-
 Lab 8 
 
-    Calcultor that asks user for current date and birth date and calculates
-    age. 
-    Checks to see if dates entered are valid.
+    - Calcultor that asks user for current date and birth date and calculates
+      age. 
+    - Checks to see if dates entered are valid.
 
 Lab 7 
 
-    program to simulate calculator:
+    - Program to simulate calculator:
     can perform multiplication, division, subtraction and addition 
-    performs as many calculations as user wants 
+    - Performs as many calculations as user wants 
 
 Lab 6
 
@@ -36,22 +36,22 @@ Lab 6
 
 Lab 5 
 
-    Program that allows user to print the 12 days of Christmas as many times 
-    as they want.
-    The program will use loops to sing the song.
+    - Program that allows user to print the 12 days of Christmas as many times 
+      as they want.
+    - The program will use loops to sing the song.
 
 Lab 4 
 
-    Program that allows cutomer to go online shopping. Customer has option to go shopping not. 
-    Customer has a budget and is displayed possibilites based on the amount of money she/he has. 
-    Customer can shop as long as they have money. 
+    - Program that allows cutomer to go online shopping. Customer has option to go shopping not. 
+    - Customer has a budget and is displayed possibilites based on the amount of money she/he has. 
+    - Customer can shop as long as they have money. 
  
  Lab 3
 
-    Game that asks user to enter three number, and the asks questions, checks for accuracy
-     and returns the correct answers along with score. 
-     User can choose no to play the game. 
-     Checks for min, max, avg, and sum. 
+    - Game that asks user to enter three number, and the asks questions, checks for accuracy
+      and returns the correct answers along with score. 
+    - User can choose no to play the game. 
+    - Checks for min, max, avg, and sum. 
   
 Lab 2 
 
