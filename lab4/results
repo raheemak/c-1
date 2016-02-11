@@ -1,0 +1,280 @@
+Script started on Thu 15 Oct 2015 02:08:16 PM EDT
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ pwd
+/home/students/raheemakadwa/CISC1600/lab4
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ ca [K [Kt sgopp[K[K[K[Khopping.cpp
+/*
+ * Let's go shopping! 
+ * Lab 4 
+ * Raheema Kadwa 
+ *
+ * Program that allows cutomer to go online shopping. Customer has option to go shopping not. 
+ * Customer has a budget and is displayed possibilites based on the amount of money she/he has. 
+ * Customer can shop as long as they have money. 
+ */
+
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::string;
+using std::endl;
+
+#include <iomanip>
+using std::setprecision;
+using std::fixed;
+
+main(){
+	const double WITCH = 39.00, GHOUL = 50.00, MADONNA = 12.99, TRUMP=24.99;
+	double budget;
+	string name, response, email; 
+	bool contShop = true; 
+	int counter; 
+	char code; 
+
+	cout << "\n-----\nWelcome to your Halloween Shopping Spree."<<endl;
+	cout <<"My name is Raheema and I will be helping you with your order." <<endl;
+	cout << "Who do I have the pleasure of assisting today? ";
+	cin >> name;
+	
+	// ask if user wants to continue 
+	cout <<"Thank you "<<name<<". Are you ready to spend your money (yes/no)? ";
+	cin  >> response;
+	cout << "----\n";
+		//if no, then quit
+	if (response == "NO" || response == "no")
+		cout << "Thank you "<<name<<". Come back soon!\n----\n";
+	//if yes, then continue 
+	else if (response == "YES" || response == "yes"){
+
+		cout <<"OK "<<name<<". How much money do you have to spend? ";
+		cin >>  budget ;
+ 
+		// don't begin shopping if there is not enough money to buy the min priced object 
+		if (budget < MADONNA){ 
+			contShop = false; 
+			cout << "----\nYou do not have enough money to go shopping. \n";
+			cout <<"Refill your balanace and come back soon!\n----\n";
+		}
+		while (contShop) {
+			counter = 1 ;
+
+			
+			if (budget >= MADONNA)  { 
+				cout <<"\nOK "<<name<<" here are your choices.\n";
+				cout << "  "<<counter <<". A retro Madonna costume, "<<MADONNA<<". Code: 'M'.\n";
+				if (budget >= TRUMP ) {
+					counter ++ ;
+					cout <<"  "<< counter << ". A Donald Trump constume, "<<TRUMP <<". Code: 'T'.\n";
+					if (budget >= WITCH ) {
+						counter ++ ;
+						cout <<"  "<< counter<< ". A witch witch costume, " << WITCH << ". Code: 'W'.\n";
+						if  ( budget >= GHOUL){
+							counter ++ ;
+							cout <<"  "<< counter <<". A gooooulish mask, "<<GHOUL << ". Code 'G'.\n";
+						}
+					}
+				}
+			}
+			cout << "\nEnter code to purchase: ";
+			cin >>code;
+
+			switch (code){
+				case 'M':
+					cout <<"Feisty! ";
+					cout << "You purchased a Madonna costume for " <<MADONNA<< ".\n";
+					budget -=MADONNA;	
+					break;
+				case 'T':
+					if (budget >= TRUMP){
+						cout <<"Good luck with elections! ";
+						cout <<"You purchased a Donald Trump costume for " <<TRUMP <<". \n";
+						budget -=TRUMP;
+					}else
+						cout <<"Nice try! This was not one of your options!\n";
+					break;
+				case 'W':
+					if (budget >= WITCH){
+						cout <<"You'll look bewitching! ";
+						cout <<"You purchased a witch costume for " << WITCH << ". \n";
+						budget -= WITCH;
+					}else
+						cout <<"Nice try! This was not one of your options!\n";
+					break;
+				case 'G':
+					if (budget >= GHOUL){
+						cout <<"Spooooky! ";
+						cout <<"You purchased a ghoul mask for "<<GHOUL<< ". \n";
+						budget -=GHOUL;
+					}else
+						cout <<"Nice try! This was not of your options!\n"; 
+					break;
+				default: 
+					cout <<"Not regonized code. \n";
+					break;
+			}
+			
+			cout << "Your balance is: " << budget << ".\n";
+			if (budget < MADONNA) {
+				cout << "You do not have enough money to continue shopping.\n";
+				cout << " ---- \nWould you like to be emailed your receipt (yes/no)? ";
+				cin >> response;
+				if (response == "yes"){
+					cout << "Enter your email: ";
+					cin >> email;
+					cout << "An email has been sent to "<<email<<". "<<endl; 
+				}
+				cout << "----\nThank you for shopping with us "<<name<<".\n----\n";
+				contShop = false; 
+			}else { 
+				cout << "Would you like to continue shopping (yes/no)? ";
+				cin >> response;				 
+				if (response=="yes")
+					contShop= true;
+				else {
+					contShop = false;
+					cout <<"----\nWould you like to be emailed a receipt (yes/no)? ";
+					cin >> response;
+					if (response == "yes"){
+						cout << "Enter your email: " ;
+						cin >> email;
+						cout << "An email has been sent to "<< email <<". \n";
+					}
+					cout << "----\nThank you for shopping with us. \n";
+				}
+			}
+		}
+	}
+	// if command not recognized, then quit
+	else 
+		cout << "Not recognized. Quitting...\n----" <<endl;
+
+}
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ [K[raheemakadwa@storm lab4]$ g++ shopping.cpp -o shopping 
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ ./shoppn[King
+
+-----
+Welcome to your Halloween Shopping Spree.
+My name is Raheema and I will be helping you with your order.
+Who do I have the pleasure of assisting today? bob
+Thank you bob. Are you ready to spend your money (yes/no)? no
+----
+Thank you bob. Come back soon!
+----
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ ./shoppingg++ shopping.cpp -o shopping [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[19P./shopping
+
+-----
+Welcome to your Halloween Shopping Spree.
+My name is Raheema and I will be helping you with your order.
+Who do I have the pleasure of assisting today? raheema       dylan
+Thank you dylan. Are you ready to spend your money (yes/no)? yes
+----
+OK dylan. How much money do you have to spend? 100
+
+OK dylan here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+  3. A witch witch costume, 39. Code: 'W'.
+  4. A gooooulish mask, 50. Code 'G'.
+
+Enter code to purchase: G
+Spooooky! You purchased a ghoul mask for 50. 
+Your balance is: 50.
+Would you like to continue shopping (yes/no)? no
+----
+Would you like to be emailed a receipt (yes/no)? yes
+Enter your email: kraheema25@gmail.com
+An email has been sent to kraheema25@gmail.com. 
+----
+Thank you for shopping with us. 
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ ./shoppingg++ shopping.cpp -o shopping [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[19P./shopping
+
+-----
+Welcome to your Halloween Shopping Spree.
+My name is Raheema and I will be helping you with your order.
+Who do I have the pleasure of assisting today? cooper
+Thank you cooper. Are you ready to spend your money (yes/no)? yes
+----
+OK cooper. How much money do you have to spend? 25
+
+OK cooper here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+
+Enter code to purchase: W
+Nice try! This was not one of your options!
+Your balance is: 25.
+Would you like to continue shopping (yes/no)? yes
+
+OK cooper here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+
+Enter code to purchase: M
+Feisty! You purchased a Madonna costume for 12.99.
+Your balance is: 12.01.
+You do not have enough money to continue shopping.
+ ---- 
+Would you like to be emailed your receipt (yes/no)? no
+----
+Thank you for shopping with us cooper.
+----
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ ./shopping
+
+-----
+Welcome to your Halloween Shopping Spree.
+My name is Raheema and I will be helping you with your order.
+Who do I have the pleasure of assisting today? b steve
+Thank you steve. Are you ready to spend your money (yes/no)? yes
+----
+OK steve. How much money do you have to spend? 200
+
+OK steve here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+  3. A witch witch costume, 39. Code: 'W'.
+  4. A gooooulish mask, 50. Code 'G'.
+
+Enter code to purchase: G
+Spooooky! You purchased a ghoul mask for 50. 
+Your balance is: 150.
+Would you like to continue shopping (yes/no)? yes
+
+OK steve here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+  3. A witch witch costume, 39. Code: 'W'.
+  4. A gooooulish mask, 50. Code 'G'.
+
+Enter code to purchase: W
+You'll look bewitching! You purchased a witch costume for 39. 
+Your balance is: 111.
+Would you like to continue shopping (yes/no)? yes
+
+OK steve here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+  3. A witch witch costume, 39. Code: 'W'.
+  4. A gooooulish mask, 50. Code 'G'.
+
+Enter code to purchase: t
+Not regonized code. 
+Your balance is: 111.
+Would you like to continue shopping (yes/no)? yes
+
+OK steve here are your choices.
+  1. A retro Madonna costume, 12.99. Code: 'M'.
+  2. A Donald Trump constume, 24.99. Code: 'T'.
+  3. A witch witch costume, 39. Code: 'W'.
+  4. A gooooulish mask, 50. Code 'G'.
+
+Enter code to purchase: T
+Good luck with elections! You purchased a Donald Trump costume for 24.99. 
+Your balance is: 86.01.
+Would you like to continue shopping (yes/no)? no
+----
+Would you like to be emailed a receipt (yes/no)? no
+----
+Thank you for shopping with us. 
+]0;raheemakadwa@storm:~/CISC1600/lab4[raheemakadwa@storm lab4]$ exit
+exit
+
+Script done on Thu 15 Oct 2015 02:10:36 PM EDT

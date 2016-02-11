@@ -1,0 +1,186 @@
+Script started on Thu 05 Nov 2015 11:31:57 PM EST
+]0;raheemakadwa@storm:~/CISC1600/lab6[raheemakadwa@storm lab6]$ pwd 
+/home/students/raheemakadwa/CISC1600/lab6
+]0;raheemakadwa@storm:~/CISC1600/lab6[raheemakadwa@storm lab6]$ cat rand.cpp 
+/*generate random number c+ *Lab6
+ * Guess My Number 
+ * Raheema Kadwa 
+ *
+ * Program that generates a random number and allows user to guess the number a maximum amount of times.
+ *
+ */
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
+
+//function to generate a random number
+//rfMin = range from min 
+//function works with negative numbers! 
+int generateNum(int min, int rfMin){
+	srand(time(0));
+	int number =  rand()%(rfMin - min + 1 ) +  min ;
+	return number;
+}
+
+//returns 0 if numbers are equal 
+//returns 1 if guess is smaller than random number
+
+//returns 2 if guess if larger than random number
+
+int compare(int actual, int check){
+	if (actual==check)
+		return 0;
+	else if (check < actual)
+		return 1;
+	else 
+		return 2;
+}
+
+void play (){
+	int tries =0 , guess, rand, correct;
+	bool cont = true;
+	string response;
+	const int MIN = -1000 , MAX = 1000 , TRIES = 20 , LUCKY = 10;
+	
+	rand = generateNum (MIN,MAX);
+	//cout << "Rand: " << rand << endl;
+	
+	while (cont){
+		cout << "Enter a number between 1 and 1000: ";
+		cin >> guess;
+
+		correct = compare(rand,guess);
+		//cout << "correct: " <<correct<<endl;
+
+		if (correct == 0 ){
+			cont = false;
+			if (tries < LUCKY)
+				cout << "Either you are insightful, or you are lucky! \n";
+			else if (tries == LUCKY )
+				cout << "Wow the lucky " << LUCKY <<"th try! \n";
+			else 
+				cout << "Really? You can do better than " << tries << " tries! \n ";
+		}
+		else {
+			if (correct == 1) 
+				cout << "Too Low. Try Again.\n";
+			// the last option is that (correct = 2 )
+			else  
+				cout << "Too High. Try Again.\n";
+			//update number of tries;
+			tries++;
+			//only allow user guess 10 times
+			if (tries > TRIES){
+				cont = false;
+				cout << "You have exceeded the amount of tries!\n";
+			}
+			else   
+				cout << "You have " << TRIES - tries << " tries left.\n";
+		}//close else loop 
+	}//close while loop 
+}//end function 
+
+main(){
+	//function calls: 
+	void play();
+
+	//variables
+	char response;
+	bool cont = false;
+
+	//begin game 
+	do {
+		cout << "Would you like to play (y/n)?: ";
+		cin >> response;
+		if (response == 'Y' || response == 'y'){
+			cont = true;
+			play();
+			cout << "Would you like to play again (y/n)?: ";
+			cin >> response;
+			if (response == 'N' || response == 'n')
+				cont = false;	
+		}//if response is yes 
+	}while (cont ==true);
+
+	cout << "Quitting game ... \n";
+}
+
+
+
+
+]0;raheemakadwa@storm:~/CISC1600/lab6[raheemakadwa@storm lab6]$ g++ rand.cp [Kp -o rand 
+]0;raheemakadwa@storm:~/CISC1600/lab6[raheemakadwa@storm lab6]$ ./rand 
+Would you like to play (y/n)?: n
+Quitting game ... 
+]0;raheemakadwa@storm:~/CISC1600/lab6[raheemakadwa@storm lab6]$ ./rand 
+Would you like to play (y/n)?: y
+Enter a number between 1 and 1000: 500
+Too High. Try Again.
+You have 19 tries left.
+Enter a number between 1 and 1000: 300
+Too High. Try Again.
+You have 18 tries left.
+Enter a number between 1 and 1000: 150
+Too High. Try Again.
+You have 17 tries left.
+Enter a number between 1 and 1000: 0
+Too High. Try Again.
+You have 16 tries left.
+Enter a number between 1 and 1000: -500
+Too High. Try Again.
+You have 15 tries left.
+Enter a number between 1 and 1000: -1000
+Too Low. Try Again.
+You have 14 tries left.
+Enter a number between 1 and 1000: -800
+Too High. Try Again.
+You have 13 tries left.
+Enter a number between 1 and 1000: -700
+Too High. Try Again.
+You have 12 tries left.
+Enter a number between 1 and 1000: -900
+Too High. Try Again.
+You have 11 tries left.
+Enter a number between 1 and 1000: -950
+Too Low. Try Again.
+You have 10 tries left.
+Enter a number between 1 and 1000: -970
+Too Low. Try Again.
+You have 9 tries left.
+Enter a number between 1 and 1000: -980
+Too Low. Try Again.
+You have 8 tries left.
+Enter a number between 1 and 1000: -940
+Too Low. Try Again.
+You have 7 tries left.
+Enter a number between 1 and 1000: -03930     930
+Too Low. Try Again.
+You have 6 tries left.
+Enter a number between 1 and 1000: -920
+Too Low. Try Again.
+You have 5 tries left.
+Enter a number between 1 and 1000: -910
+Too Low. Try Again.
+You have 4 tries left.
+Enter a number between 1 and 1000: -900
+Too High. Try Again.
+You have 3 tries left.
+Enter a number between 1 and 1000: -905
+Too Low. Try Again.
+You have 2 tries left.
+Enter a number between 1 and 1000: -903
+Too Low. Try Again.
+You have 1 tries left.
+Enter a number between 1 and 1000: -902
+Really? You can do better than 19 tries! 
+ Would you like to play again (y/n)?: n
+Quitting game ... 
+]0;raheemakadwa@storm:~/CISC1600/lab6[raheemakadwa@storm lab6]$ exit
+exit
+
+Script done on Thu 05 Nov 2015 11:34:19 PM EST

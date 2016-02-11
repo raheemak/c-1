@@ -1,0 +1,186 @@
+Script started on Mon 21 Dec 2015 11:21:24 AM EST
+]0;raheemakadwa@storm:~/CISC1600/final[raheemakadwa@storm final]$ pwd
+/home/students/raheemakadwa/CISC1600/final
+]0;raheemakadwa@storm:~/CISC1600/final[raheemakadwa@storm final]$ vi [K[K[Kcat tax.cpp
+/*
+ *
+ * Raheema Kadwa
+ *
+ * Final Lab
+ *
+ * Program to calculate the taxes that user has to pay based on 
+ * marital status and income.
+ */
+
+#include <iostream>
+#include <iomanip>
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::setw;
+using std::left;
+
+main(){
+	//prototypes
+	void getTaxData(double&,double&,int&,int&);
+	double calculateTaxes(double,double,int,int);
+	void displaySummaryInformation(char, double, double);
+	
+	//main function variables
+	int index=0, B_RATE, U_RATE;
+	double SINGLE, MARRIED, currIncome, currTax;
+	bool cont=true;;
+	char SENTINAL = 'e', mStatus;
+
+	//arrays to store information 
+	char status [100];
+	double income [100];
+	double tax[100];
+	
+	//get information to set rates
+	getTaxData(SINGLE,MARRIED,B_RATE,U_RATE);	
+
+	//ask for tax information that needs to be calculated
+	//ask until user enters SENTINAL value
+
+	while (cont){
+		cout << "Enter marital status or e to exit: ";
+		cin >> mStatus;
+		
+		//is user wants to quit then exit while loop
+		if (mStatus=='e'){
+			cout << endl;
+			cont = false;
+			break;
+		}
+
+		//ask for income level
+		cout <<"Enter income level: ";
+		cin >> currIncome;
+	
+		//based on marital status calculate the taxes due 		
+		if (mStatus == 'M')
+			currTax = calculateTaxes (currIncome, MARRIED, B_RATE, U_RATE);
+		else{ 
+			currTax = calculateTaxes (currIncome, SINGLE, B_RATE, U_RATE);
+			//cout << "income: "<<currIncome<<", limit: " <<SINGLE<<", bRate: " <<B_RATE;
+			//cout <<" uRate: " <<U_RATE<<endl;
+		}
+
+		//print the taxes due
+		cout << "Taxes due: $ " <<currTax <<endl;
+		
+		//update arrays in main
+		//update counter
+		status[index] = mStatus;
+		income[index] = currIncome;
+		tax[index] = currTax;
+		
+		cout << endl;
+		index++;
+	}
+
+	if (index>0){
+
+		cout << "Summary" << endl << "-----" << endl << endl;
+		cout <<left<<setw(25)<<"Marital Status";
+		cout <<left<< setw(25)<<"Income Level";
+		cout <<left<<setw(25)<<"Taxes Due" <<endl;
+
+	
+		for (int x=0; x<index; x++){
+			mStatus = status[x];
+			currIncome = income [x];
+			currTax = tax[x];
+			displaySummaryInformation (mStatus, currIncome, currTax);
+		}	
+	}
+
+	cout <<endl;
+}
+
+void getTaxData(double&uSingle, double&uMarried, int&baseRate, int&upperRate){
+
+	cout <<endl;
+	cout << "Enter upper Income Level for Single filers: ";
+	cin >> uSingle;
+
+	cout << "Enter upper Income level for Married Filers: ";
+	cin >> uMarried;
+
+	cout << "Enter rate to apply to all income that does not exceed the upper limit: % ";
+	cin >> baseRate;
+
+	cout << "Enter rate to apply to portion of income that exceeding upper limit: % ";
+	cin >> upperRate;
+
+	cout <<endl;
+}
+
+//function that calculates taxes based on upperlimit, rate, and income 
+double calculateTaxes(double income, double  upperLimit, int baseRate, int upperRate){
+	
+	double tax;
+	double bRate = baseRate/(double)100;
+	double uRate = upperRate/(double)100;
+
+	if (income>upperLimit)
+		tax = upperLimit*bRate + uRate*(income-upperLimit);
+	else 
+		tax = income*bRate;
+	return tax;
+}	
+
+void displaySummaryInformation (char mStatus, double income, double taxOwed){
+	cout << left<< setw(25)<< mStatus;
+	cout <<left << setw(25)<<income;
+	cout <<left<<  setw(25)<<taxOwed << endl;
+}
+
+
+
+]0;raheemakadwa@storm:~/CISC1600/final[raheemakadwa@storm final]$ g++ tax.cpp -o final
+]0;raheemakadwa@storm:~/CISC1600/final[raheemakadwa@storm final]$ ./final
+
+Enter upper Income Level for Single filers: 1000
+Enter upper Income level for Married Filers: 2000
+Enter rate to apply to all income that does not exceed the upper limit: % 10
+Enter rate to apply to portion of income that exceeding upper limit: % 20
+
+Enter marital status or e to exit: M
+Enter income level: 22000 
+Taxes due: $ 240
+
+Enter marital status or e to exit: M
+Enter income level: 2000
+Taxes due: $ 200
+
+Enter marital status or e to exit: 1000    M
+Enter income level: 1000
+Taxes due: $ 100
+
+Enter marital status or e to exit: S
+Enter income level: 1300
+Taxes due: $ 160
+
+Enter marital status or e to exit: 10  S1 
+Enter income level: 1000
+Taxes due: $ 100
+
+Enter marital status or e to exit: e
+
+Summary
+-----
+
+Marital Status           Income Level             Taxes Due                
+M                        2200                     240                      
+M                        2000                     200                      
+M                        1000                     100                      
+S                        1300                     160                      
+S                        1000                     100                      
+
+]0;raheemakadwa@storm:~/CISC1600/final[raheemakadwa@storm final]$ exit
+exit
+
+Script done on Mon 21 Dec 2015 11:22:34 AM EST
