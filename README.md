@@ -3,8 +3,11 @@
 View script resuts file in every folder to see code and tests run.
 
 final 
-                    Program to calculate the taxes that user has to pay based on 
+      Program to calculate the taxes that user has to pay based on 
      marital status and income.
+    Program that allows user to print the 12 days of Christmas as many times 
+    as they want.
+    The program will use loops to sing the song.
 
 Lab 10 
     TIC TAC TOE simulation through 2-D arrays.
