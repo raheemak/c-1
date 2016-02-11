@@ -3,7 +3,7 @@
 View script resuts file in every folder to see code and tests run.
 
 final 
-     Program to calculate the taxes that user has to pay based on 
+                    Program to calculate the taxes that user has to pay based on 
      marital status and income.
 
 Lab 10 
