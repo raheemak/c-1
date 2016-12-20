@@ -1,2 +1,2 @@
-  Raheema Kadwa
+Raheema Kadwa
 Tic Tac Toe lab 
